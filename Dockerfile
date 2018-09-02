@@ -6,6 +6,8 @@ RUN apt-get update && apt-get -y install \
 
 ADD crontab /etc/cron.d/hello-cron
 
+ADD create_issue.py create_issue.py
+
 RUN chmod 0644 /etc/cron.d/hello-cron
 
 RUN crontab /etc/cron.d/hello-cron
