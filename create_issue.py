@@ -3,9 +3,15 @@ import requests
 import os
 import datetime
 
-API_TOKEN = os.environ['GITHUB_API_TOKEN']
-GITHUB_ORG = os.environ['GITHUB_ORGANIZATION']
-GITHUB_REPO = os.environ['GIHUB_REPOSITORY']
+with open('env.json') as env_file:
+    env_data = json.load(env_file)
+
+with open('secret.json') as secret_file:
+    secret_data = json.load(secret_file)
+
+API_TOKEN = secret_data['GITHUB_API_TOKEN']
+GITHUB_ORG = env_data['GITHUB_ORGANIZATION']
+GITHUB_REPO = env_data['GIHUB_REPOSITORY']
 API_URL = "https://api.github.com/repos/" + GITHUB_ORG + "/"+ GITHUB_REPO + "/issues"
 
 DATE = datetime.datetime.now()
@@ -48,8 +54,9 @@ json_content = json.loads(response.content.decode('utf8').replace("'", '"'))
 
 ISSUE_ID = json_content['number']
 
-command = "export LAST_CREATED_ISSUE_ID=" + "{0}".format(ISSUE_ID)
+env_data['LAST_CREATED_ISSUE_ID'] = int(ISSUE_ID)
 
-os_status = os.system(command)
+with open('env.json', 'w') as env_file:
+    json.dump(env_data, env_file)
 
-print("Issue #" + str(ISSUE_ID) + "was created and command '" + command + "' exited with status " + str(os_status))
+print("Issue #" + str(ISSUE_ID) + "was created")

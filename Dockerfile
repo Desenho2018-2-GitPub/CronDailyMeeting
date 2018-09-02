@@ -8,6 +8,10 @@ ADD create_issue.py /root/create_issue.py
 
 ADD issue_body.md /root/issue_body.md
 
+ADD env.json /root/env.json
+
+ADD secret.json /root/secret.json
+
 RUN apt-get update && apt-get -y install \
   cron \
   python3 \
