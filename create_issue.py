@@ -59,4 +59,4 @@ env_data['LAST_CREATED_ISSUE_ID'] = int(ISSUE_ID)
 with open('env.json', 'w') as env_file:
     json.dump(env_data, env_file)
 
-print("Issue #" + str(ISSUE_ID) + "was created")
+print("Issue #" + str(ISSUE_ID) + " was created")

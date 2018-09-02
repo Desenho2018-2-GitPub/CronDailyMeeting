@@ -22,6 +22,8 @@ ADD crontab /etc/cron.d/issue-cron
 
 ADD create_issue.py /root/create_issue.py
 
+ADD close_issue.py /root/close_issue.py
+
 ADD issue_body.md /root/issue_body.md
 
 ADD env.json /root/env.json
