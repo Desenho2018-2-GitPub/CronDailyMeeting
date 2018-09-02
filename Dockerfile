@@ -1,5 +1,17 @@
 FROM ubuntu:latest
 
+RUN apt-get install --reinstall -y locales
+
+RUN sed -i 's/# pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/' /etc/locale.gen
+
+RUN locale-gen pt_BR.UTF-8
+
+ENV LANG pt_BR.UTF-8
+ENV LANGUAGE pt_BR
+ENV LC_ALL pt_BR.UTF-8
+
+RUN dpkg-reconfigure --frontend noninteractive locales
+
 ADD requirements.txt requirements.txt
 
 ADD crontab /etc/cron.d/issue-cron

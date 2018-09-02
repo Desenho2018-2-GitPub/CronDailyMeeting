@@ -11,7 +11,7 @@ with open('secret.json') as secret_file:
 
 API_TOKEN = secret_data['GITHUB_API_TOKEN']
 GITHUB_ORG = env_data['GITHUB_ORGANIZATION']
-GITHUB_REPO = env_data['GIHUB_REPOSITORY']
+GITHUB_REPO = env_data['GITHUB_REPOSITORY']
 API_URL = "https://api.github.com/repos/" + GITHUB_ORG + "/"+ GITHUB_REPO + "/issues"
 
 DATE = datetime.datetime.now()
@@ -20,7 +20,7 @@ MONTH = DATE.month
 YEAR = DATE.year
 ISSUE_BODY_TITLE = "# Daily dia ({:02}/{:02}/{:04})\n\n".format(DAY, MONTH, YEAR)
 
-fp = open("issue_body.md", "r")
+fp = open("issue_body.md", "r", encoding='utf-8')
 file_content = fp.read()
 fp.close()
 
