@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-RUN apt-get update && apt-get install --reinstall -y locales
+RUN apt-get update && apt-get install --reinstall -y locales tzdata
 
 RUN sed -i 's/# pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/' /etc/locale.gen
 
@@ -11,6 +11,10 @@ ENV LANGUAGE pt_BR
 ENV LC_ALL pt_BR.UTF-8
 
 RUN dpkg-reconfigure --frontend noninteractive locales
+
+ENV TZ=America/Sao_Paulo
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN dpkg-reconfigure -f noninteractive tzdata
 
 ADD requirements.txt requirements.txt
 
