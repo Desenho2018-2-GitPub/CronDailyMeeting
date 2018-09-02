@@ -1,1 +1,1 @@
-* * * * * echo "Test" >> /var/log/cron.log 2>&1
+* * * * * python3 create_issue.py >> /var/log/cron_create.log 2>&1
