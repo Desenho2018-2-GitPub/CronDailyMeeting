@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-RUN apt-get install --reinstall -y locales
+RUN apt-get update && apt-get install --reinstall -y locales
 
 RUN sed -i 's/# pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/' /etc/locale.gen
 
