@@ -48,6 +48,8 @@ json_content = json.loads(response.content.decode('utf8').replace("'", '"'))
 
 ISSUE_ID = json_content['number']
 
-os.environ["LAST_CREATED_ISSUE_ID"] = "{0}".format(ISSUE_ID)
+command = "export LAST_CREATED_ISSUE_ID=" + "{0}".format(ISSUE_ID)
 
-print(ISSUE_ID)
+os_status = os.system(command)
+
+print("Issue #" + str(ISSUE_ID) + "was created and command '" + command + "' exited with status " + str(os_status))

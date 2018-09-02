@@ -1,16 +1,23 @@
 FROM ubuntu:latest
 
+ADD requirements.txt requirements.txt
+
+ADD crontab /etc/cron.d/issue-cron
+
+ADD create_issue.py /root/create_issue.py
+
+ADD issue_body.md /root/issue_body.md
+
 RUN apt-get update && apt-get -y install \
   cron \
-  python3
+  python3 \
+  python3-pip
 
-ADD crontab /etc/cron.d/hello-cron
+RUN pip3 install -r requirements.txt
 
-ADD create_issue.py create_issue.py
+RUN chmod 0644 /etc/cron.d/issue-cron
 
-RUN chmod 0644 /etc/cron.d/hello-cron
-
-RUN crontab /etc/cron.d/hello-cron
+RUN crontab /etc/cron.d/issue-cron
 
 RUN touch /var/log/cron_create.log && touch /var/log/cron_close.log
 
