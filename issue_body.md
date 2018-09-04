@@ -18,6 +18,7 @@ e aflições por parte dos membros
 - [ ] Arthur Diniz  
 - [ ] Diego Resende  
 - [ ] Gabriel Ziegler
+- [ ] João Carlos
 - [ ] Kamilla Costa
 - [ ] Romeu Antunes
 - [ ] Victor Moura
